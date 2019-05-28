@@ -27,6 +27,7 @@ public class AccountFragment extends Fragment {
                 "Do something else!",
                 "Do something!",
                 "Do something else!",
+                "Do something else!",
                 "Do something!",
                 "Do something else!",
                 "Do something!",
