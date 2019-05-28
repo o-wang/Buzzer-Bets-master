@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "203346934452",
+    "firebase_url": "https://buzzer-bets.firebaseio.com",
+    "project_id": "buzzer-bets",
+    "storage_bucket": "buzzer-bets.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:203346934452:android:19e2dcecfdab4f42",
+        "android_client_info": {
+          "package_name": "com.example.buzzerbets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "203346934452-f18hdonnr1gbb4c4o68k1abokkej9j79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp5Sd6ijarZH3xB8u4jPJ7Hd6qL5kPdTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "203346934452-f18hdonnr1gbb4c4o68k1abokkej9j79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
