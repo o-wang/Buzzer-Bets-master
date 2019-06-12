@@ -164,9 +164,9 @@ public class HomeFragment extends Fragment {
     public void onResume(){
         super.onResume();
 
-        String[] gc_separated = test.split(":");
-        for (int i = 0; i < gc_separated.length; i++){
-            Log.d("HOME", gc_separated[i] + "=====");
+        if (test != "") {
+            String[] gc_separated = test.split(",");
+            Log.d("HOME", gc_separated[5]);
         }
 
         Toast toast = Toast.makeText(getContext(), "WTF", Toast.LENGTH_SHORT);
