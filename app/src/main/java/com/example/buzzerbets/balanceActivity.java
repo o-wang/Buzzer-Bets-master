@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class balanceActivity extends AppCompatActivity {
-
+    int num2 = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,14 @@ public class balanceActivity extends AppCompatActivity {
 //                Intent startIntent = new Intent(getApplicationContext(), gameActivity.class);
 //                startIntent.putExtra("unique.SOMETHING",num1);
 //                startActivity(startIntent);
+//                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
+//                int num1 = Integer.parseInt(firstNumEditText.getText().toString());
+//                int result = num1 - num2;
+//                resultTextView.setText(result + "");
+//                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
+//                int num1 = Integer.parseInt(firstNumEditText.getText().toString());
+//                int result = num1;
+//                resultTextView.setText(result + "");
             }
         });
     }

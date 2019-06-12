@@ -26,11 +26,11 @@ public class gameActivity extends AppCompatActivity {
 ////            tv.setText(text);
 //                    int num2 = Integer.parseInt(text);
 //                }
-                EditText firstNumEditText = (EditText) findViewById(R.id.firstNumEditText);
-                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
-                int num1 = Integer.parseInt(firstNumEditText.getText().toString());
-                int result = num2 - num1;
-                resultTextView.setText(result + "");
+//                EditText firstNumEditText = (EditText) findViewById(R.id.firstNumEditText);
+//                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
+//                int num1 = Integer.parseInt(firstNumEditText.getText().toString());
+//                int result = num2 - num1;
+//                resultTextView.setText(result + "");
             }
         });
     }
