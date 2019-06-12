@@ -70,7 +70,7 @@ int start_redirecting_stdout_stderr() {
 
 //node's libUV requires all arguments being on contiguous memory.
 extern "C" jstring JNICALL
-Java_com_example_buzzerbets_MainActivity_startNodeWithArguments(
+Java_com_example_buzzerbets_HomeFragment_startNodeWithArguments(
         JNIEnv *env,
         jobject /* this */,
         jobjectArray arguments) {
