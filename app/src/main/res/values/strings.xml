@@ -13,4 +13,5 @@
     <string name="title_home">Home</string>
     <string name="title_history">History</string>
     <string name="title_account">Account</string>
+    <string name="title_activity_balance_activity">balance_activity</string>
 </resources>

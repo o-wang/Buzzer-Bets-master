@@ -18,6 +18,7 @@
 //}
 package com.example.buzzerbets;
 
+import android.content.Intent;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -32,6 +33,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -82,6 +84,35 @@ public class HomeFragment extends Fragment {
         ListView listView = (ListView) view.findViewById(R.id.home);
         CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0){
+                    Intent myIntent = new Intent(view.getContext(), gameActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+                if(position==1){
+                    Intent myIntent = new Intent(view.getContext(), gameActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+                if(position==2){
+                    Intent myIntent = new Intent(view.getContext(), gameActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+                if(position==3){
+                    Intent myIntent = new Intent(view.getContext(), gameActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+                if(position==4){
+                    Intent myIntent = new Intent(view.getContext(), gameActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+                if(position==5){
+                    Intent myIntent = new Intent(view.getContext(), gameActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+            }
+        });
 
         if (!_startedNodeAlready) {
             _startedNodeAlready = true;
@@ -258,7 +289,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View view = getLayoutInflater().inflate(R.layout.customlayout, null);
+            View view = getLayoutInflater().inflate(R.layout.custom3layout, null);
             ImageView mImageView = view.findViewById(R.id.imageView);
             TextView mTextView = view.findViewById(R.id.textview);
             mImageView.setImageResource(images[position]);
