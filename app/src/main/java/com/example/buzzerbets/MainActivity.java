@@ -6,12 +6,15 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -49,7 +52,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     public static boolean _startedNodeAlready = false;
 
-    public native Integer startNodeWithArguments(String[] arguments);
+    String test = "";
+
+    public native String startNodeWithArguments(String[] arguments);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,25 +65,33 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         navView.setOnNavigationItemSelectedListener(this);
         loadFragment(new HistoryFragment());
 
-        if (!_startedNodeAlready){
+        if (!_startedNodeAlready) {
             _startedNodeAlready = true;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String nodeDir = getApplicationContext().getFilesDir().getAbsolutePath()+"/nodejs-project";
-                    if (wasAPKUpdated()){
+                    String nodeDir = getApplicationContext().getFilesDir().getAbsolutePath() + "/nodejs-project";
+                    if (wasAPKUpdated()) {
                         File nodeDirReference = new File(nodeDir);
-                        if (nodeDirReference.exists()){
+                        if (nodeDirReference.exists()) {
                             deleteFolderRecursively(new File(nodeDir));
                         }
                         copyAssetFolder(getApplicationContext().getAssets(), "nodejs-project", nodeDir);
 
                         saveLastUpdateTime();
                     }
-                    startNodeWithArguments(new String[]{"node", nodeDir + "/main.js"});
+                    test = startNodeWithArguments(new String[]{"node", nodeDir + "/main.js"});
                 }
             }).start();
         }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        Toast toast = Toast.makeText(getApplicationContext(), "onResume", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     private boolean wasAPKUpdated() {

@@ -5,6 +5,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <android/log.h>
+#include <iostream>
 
 
 // Start threads to redirect stdout and stderr to logcat.
@@ -13,6 +14,8 @@ int pipe_stderr[2];
 pthread_t thread_stdout;
 pthread_t thread_stderr;
 const char *ADBTAG = "NODEJS-MOBILE";
+
+std::string JSON;
 
 void *thread_stderr_func(void*) {
     ssize_t redirect_size;
@@ -23,6 +26,7 @@ void *thread_stderr_func(void*) {
             --redirect_size;
         buf[redirect_size] = 0;
         __android_log_write(ANDROID_LOG_ERROR, ADBTAG, buf);
+        JSON = buf;
     }
     return 0;
 }
@@ -36,6 +40,7 @@ void *thread_stdout_func(void*) {
             --redirect_size;
         buf[redirect_size] = 0;
         __android_log_write(ANDROID_LOG_INFO, ADBTAG, buf);
+        JSON = buf;
     }
     return 0;
 }
@@ -64,7 +69,7 @@ int start_redirecting_stdout_stderr() {
 
 
 //node's libUV requires all arguments being on contiguous memory.
-extern "C" jint JNICALL
+extern "C" jstring JNICALL
 Java_com_example_buzzerbets_MainActivity_startNodeWithArguments(
         JNIEnv *env,
         jobject /* this */,
@@ -110,6 +115,17 @@ Java_com_example_buzzerbets_MainActivity_startNodeWithArguments(
     }
 
     //Start node, with argc and argv.
-    return jint(node::Start(argument_count,argv));
+//    return jint(node::Start(argument_count,argv));
+    node::Start(argument_count,argv);
+
+//    jobjectArray ret;
+//    ret = (jobjectArray)env->NewObjectArray(2048, env->FindClass("java/lang/String"), env->NewStringUTF(""));
+//    for (int i = 0; i < 2048; i++){
+//        env->SetObjectArrayElement(ret,i,env->NewStringUTF(&JSON[i]));
+//    }
+
+//    printf("JSON============: %s", JSON.c_str());
+
+    return env->NewStringUTF(JSON.c_str());
 
 }
