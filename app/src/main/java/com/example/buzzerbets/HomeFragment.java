@@ -41,6 +41,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.util.ArrayUtils;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -53,16 +55,6 @@ import java.io.OutputStream;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-    int[] images = {R.drawable.steph_curry,
-            R.drawable.steph_curry,
-            R.drawable.steph_curry,
-            R.drawable.steph_curry,
-            R.drawable.steph_curry,
-            R.drawable.steph_curry
-    };
-    String[] homeItems = {"Item1",
-            "Item2", "Item3", "Item4", "Item5", "Item6"
-    };
 
     //API stuff
     static {
@@ -76,38 +68,21 @@ public class HomeFragment extends Fragment {
 
     public native String startNodeWithArguments(String[] arguments);
 
+    CustomAdapter customAdapter = new CustomAdapter();
+
+    boolean first = true;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        //return super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home, null);
         ListView listView = (ListView) view.findViewById(R.id.home);
-        CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position==0){
-                    Intent myIntent = new Intent(view.getContext(), gameActivity.class);
-                    startActivityForResult(myIntent, 0);
-                }
-                if(position==1){
-                    Intent myIntent = new Intent(view.getContext(), gameActivity.class);
-                    startActivityForResult(myIntent, 0);
-                }
-                if(position==2){
-                    Intent myIntent = new Intent(view.getContext(), gameActivity.class);
-                    startActivityForResult(myIntent, 0);
-                }
-                if(position==3){
-                    Intent myIntent = new Intent(view.getContext(), gameActivity.class);
-                    startActivityForResult(myIntent, 0);
-                }
-                if(position==4){
-                    Intent myIntent = new Intent(view.getContext(), gameActivity.class);
-                    startActivityForResult(myIntent, 0);
-                }
-                if(position==5){
                     Intent myIntent = new Intent(view.getContext(), gameActivity.class);
                     startActivityForResult(myIntent, 0);
                 }
@@ -166,11 +141,19 @@ public class HomeFragment extends Fragment {
 
         if (test != "") {
             String[] gc_separated = test.split(",");
-            Log.d("HOME", gc_separated[5]);
+//            Log.d("HOME", gc_separated[5]);
+            String gc = gc_separated[5].substring(21,22);
+            if (gc.equals("G")){
+                first = false;
+//                Toast toast = Toast.makeText(getContext(), gc, Toast.LENGTH_SHORT);
+//                toast.show();
+                Log.d("HOME", gc);
+                customAdapter.notifyDataSetChanged();
+            }
+//            Toast toast = Toast.makeText(getContext(), gc, Toast.LENGTH_SHORT);
+//            toast.show();
         }
 
-        Toast toast = Toast.makeText(getContext(), "WTF", Toast.LENGTH_SHORT);
-        toast.show();
     }
 
     private boolean wasAPKUpdated() {
@@ -272,6 +255,9 @@ public class HomeFragment extends Fragment {
 
     class CustomAdapter extends BaseAdapter{
 
+        int[] images = {R.drawable.golden_state_warriors};
+        String[] homeItems = {"GSW vs TOR"};
+
         @Override
         public int getCount() {
             return images.length;
@@ -292,8 +278,10 @@ public class HomeFragment extends Fragment {
             View view = getLayoutInflater().inflate(R.layout.custom3layout, null);
             ImageView mImageView = view.findViewById(R.id.imageView);
             TextView mTextView = view.findViewById(R.id.textview);
-            mImageView.setImageResource(images[position]);
-            mTextView.setText(homeItems[position]);
+            if (first == false) {
+                mImageView.setImageResource(images[position]);
+                mTextView.setText(homeItems[position]);
+            }
             return view;
         }
     }

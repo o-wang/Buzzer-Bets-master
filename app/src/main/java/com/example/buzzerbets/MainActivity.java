@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         BottomNavigationView navView = findViewById(R.id.nav_view);
         //mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(this);
-        loadFragment(new HomeFragment());
+        loadFragment(new HistoryFragment());
 
 //        if (!_startedNodeAlready) {
 //            _startedNodeAlready = true;
