@@ -24,9 +24,11 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.File;
@@ -128,7 +132,13 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume(){
         super.onResume();
-        Toast toast = Toast.makeText(getContext(), test.toString(), Toast.LENGTH_SHORT);
+
+        String[] gc_separated = test.split(":");
+        for (int i = 0; i < gc_separated.length; i++){
+            Log.d("HOME", gc_separated[i] + "=====");
+        }
+
+        Toast toast = Toast.makeText(getContext(), "WTF", Toast.LENGTH_SHORT);
         toast.show();
     }
 
