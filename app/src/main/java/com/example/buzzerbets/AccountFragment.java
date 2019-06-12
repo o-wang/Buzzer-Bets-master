@@ -1,5 +1,6 @@
 package com.example.buzzerbets;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -18,12 +20,16 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 public class AccountFragment extends Fragment {
-    int[] images = {R.drawable.steph_curry,
-                    R.drawable.steph_curry
-                    };
-    String[] accountItems = {"Item1",
-                                "Item2"
-                    };
+    int[] images = {
+            R.drawable.cash,
+            R.drawable.trans_log
+    };
+    String[] accountItems =
+        {
+                                "Add Payment",
+                                "Logout"
+        };
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,6 +38,15 @@ public class AccountFragment extends Fragment {
         ListView listView = (ListView) view.findViewById(R.id.account);
         CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0) {
+                    Intent myIntent = new Intent(view.getContext(), balanceActivity.class);
+                    startActivityForResult(myIntent, 0);
+                }
+            }
+        });
 //        String[] accountItems = {"Do something!",
 //                                "Do something else!",
 //                                "Do yet another thing!",
@@ -78,7 +93,7 @@ public class AccountFragment extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View view = getLayoutInflater().inflate(R.layout.customlayout, null);
+            View view = getLayoutInflater().inflate(R.layout.custom2layout, null);
             ImageView mImageView = view.findViewById(R.id.imageView);
             TextView mTextView = view.findViewById(R.id.textview);
             mImageView.setImageResource(images[position]);
